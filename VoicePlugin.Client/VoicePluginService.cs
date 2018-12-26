@@ -51,7 +51,9 @@ namespace VoicePlugin.Client
 			this.ActivatedColor = config.ActivatedTextColor;
 
 			this.SelectedVoice = this.NormalText;
-			this.LastString = GetProperHtmlString(false);
+			API.NetworkSetTalkerProximity(this.NormalDistance);
+
+            this.LastString = GetProperHtmlString(false);
 			this.overlay.Talk(CorrectFormat("#fff"));
 
 			this.overlay.Show();
