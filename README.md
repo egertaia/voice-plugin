@@ -25,19 +25,19 @@ Works well with my other plugin [Street positions](https://github.com/egertaia/s
    * style/html file `path-to-server\resources\nfive\plugins\egertaia\voice-plugin\Overlays`
    
 #### Configuration
-*`whisper_text` = Text for the whisper (shortest)
+* `whisper_text` = Text for the whisper (shortest)
 
-*`whisper_distance` = Distance that the players should hear you from.
+* `whisper_distance` = Distance that the players should hear you from.
 
-*`normal_text` = Text for the normal (average)
+* `normal_text` = Text for the normal (average)
 
-*`normal_distance` = Distance that the players should hear you from.
+* `normal_distance` = Distance that the players should hear you from.
 
-*`yell_text` = Text for the yell (furthest)
+* `yell_text` = Text for the yell (furthest)
 
-*`yell_distance` = Distance that the players should hear you from.
+* `yell_distance` = Distance that the players should hear you from.
 
-*`default_text_color` = Text color that should be when user is not talking (PS! Don't forget #)
+* `default_text_color` = Text color that should be when user is not talking (PS! Don't forget #)
 
-*`activated_text_color` = Text color that should be when user is talking (PS! Don't forget #)
+* `activated_text_color` = Text color that should be when user is talking (PS! Don't forget #)
 
