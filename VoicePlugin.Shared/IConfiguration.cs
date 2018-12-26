@@ -6,11 +6,11 @@ namespace VoicePlugin.Shared
 	public interface IConfiguration
 	{
 		string WhisperText { get; set; }
-		double WhisperDistance { get; set; }
+		float WhisperDistance { get; set; }
 		string NormalText { get; set; }
-		double NormalDistance { get; set; }
+		float NormalDistance { get; set; }
 		string YellText { get; set; }
-		double YellDistance { get; set; }
+		float YellDistance { get; set; }
 		string DefaultTextColor { get; set; }
 		string ActivatedTextColor { get; set; }
 	}

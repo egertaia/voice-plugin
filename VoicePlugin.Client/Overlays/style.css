@@ -12,14 +12,17 @@
 
 #main-container {
 	position: absolute;
-	bottom: 2.5vh;
-	left: 17.7vw;
+	bottom: 4.5vh;
+	left: 17.65vw;
 	text-align: left;
-	display: flex;
 	font-size: 14px;
 }
 
 #voice {
+	color: #E6D081;
+}
+
+#level {
 	color: #fff;
 }
 
