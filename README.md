@@ -8,6 +8,10 @@ This is a plugin that works with [NFive](https://github.com/NFive/NFive) which i
 The whole server is built and managed entirely in C#.
 This project aims to help in vizualising the voice in GTAV.
 
+Works well with my other plugin [Street positions](https://github.com/egertaia/street-position)
+
+![image](https://user-images.githubusercontent.com/9960794/50451277-bbccea80-093b-11e9-831c-bfaf937dace6.png)
+
 ### Usage
 1. Make sure you are using [nfpm](https://github.com/NFive/nfpm) installed.
 
