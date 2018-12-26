@@ -1,0 +1,18 @@
+name: egertaia/voice-plugin
+version: 1.0.0
+description: This is a simple plugin that will help you in your roleplay adventures
+author: egertaia
+license: LGPL
+server:
+  main:
+    - VoicePlugin.Server
+  include:
+    - VoicePlugin.Shared
+client:
+  main:
+    - VoicePlugin.Client
+  files:
+    - Overlays/VoiceOverlay.html
+    - Overlays/style.css
+  include:
+    - VoicePlugin.Shared

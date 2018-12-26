@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:700">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="style.css" />
+
+	<script>
+			$(() => {
+				nfive.on('talk', (obj) => {
+					$("#voice").nextAll().remove()
+					$("#voice").after(obj);
+				})
+			})
+	</script>
+</head>
+<body>
+	<div id="main-container">
+		<span id="voice">Voice: </span><span id="level"></span>
+	</div>
+</body>
+</html>
