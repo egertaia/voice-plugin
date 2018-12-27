@@ -7,9 +7,9 @@ namespace VoicePlugin.Client.Overlays
 	{
 		public VoiceOverlay(OverlayManager manager) : base("VoiceOverlay.html", manager) { }
 
-		public void Talk(string voiceLevelString)
+		public void UpdateVoiceOverlay(string voiceLevelString)
 		{
-			Send("talk", voiceLevelString);
+			Send("update-voice", voiceLevelString);
 		}
 	}
 }

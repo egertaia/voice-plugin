@@ -10,7 +10,7 @@
 
 	<script>
 			$(() => {
-				nfive.on('talk', (obj) => {
+				nfive.on('update-voice', (obj) => {
 					$("#voice").nextAll().remove()
 					$("#voice").after(obj);
 				})

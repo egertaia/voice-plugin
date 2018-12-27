@@ -1,14 +1,13 @@
 ﻿using NFive.SDK.Core.Controllers;
 using JetBrains.Annotations;
+using System.Collections.Generic;
 
 namespace VoicePlugin.Shared
 {
 	[PublicAPI]
 	public class Configuration : ControllerConfiguration
 	{
-		public WhisperConfiguration Whisper { get; set; } = new WhisperConfiguration();
-		public NormalConfiguration Normal { get; set; } = new NormalConfiguration();
-		public YellConfiguration Yell { get; set; } = new YellConfiguration();
+		public VoiceConfiguration Voice { get; set; } = new VoiceConfiguration();
 		public TextConfiguration Text { get; set; } = new TextConfiguration();
 		public KeyConfiguration Cycle { get; set; } = new KeyConfiguration();
 		public string ActivationEvent { get; set; } = string.Empty;
@@ -30,29 +29,28 @@ namespace VoicePlugin.Shared
 	}
 
 	[PublicAPI]
-	public class WhisperConfiguration : IVoiceConfiguration
+	public class VoiceConfiguration
 	{
-		public string Text { get; set; } = "Whisper";
-		public float Distance { get; set; } = 1.5f;
+		public List<VoiceStyleConfiguration> VoiceStyles { get; set; } =
+			new List<VoiceStyleConfiguration>
+			{
+				new VoiceStyleConfiguration("Normal", 10f),
+				new VoiceStyleConfiguration("Yell", 25f),
+				new VoiceStyleConfiguration("Whisper", 1.5f)
+			};
 	}
 
 	[PublicAPI]
-	public class NormalConfiguration : IVoiceConfiguration
+	public class VoiceStyleConfiguration
 	{
-		public string Text { get; set; } = "Normal";
-		public float Distance { get; set; } = 10.0f;
-	}
+		public VoiceStyleConfiguration(){ }
+		public VoiceStyleConfiguration(string text, float distance)
+		{
+			this.Text = text;
+			this.Distance = distance;
+		}
 
-	[PublicAPI]
-	public class YellConfiguration : IVoiceConfiguration
-	{
-		public string Text { get; set; } = "Yell";
-		public float Distance { get; set; } = 25.0f;
-	}
-
-	public interface IVoiceConfiguration
-	{
-		string Text { get; set; }
-		float Distance { get; set; }
+		public string Text { get; set; } = "Text";
+		public float Distance { get; set; } = 25f;
 	}
 }

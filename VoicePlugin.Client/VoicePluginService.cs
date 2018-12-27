@@ -33,9 +33,9 @@ namespace VoicePlugin.Client
 			this.Rpc.Event(VoicePluginEvents.GetConfig).On<Configuration>((e, c) => this.config = c);
 
 			//set default talker proximity and text
-			this.SelectedVoice = this.config.Normal.Text;
+			this.SelectedVoice = this.config.Voice.VoiceStyles[0].Text;
 			this.LastString = GetProperHtmlString(false);
-			API.NetworkSetTalkerProximity(this.config.Normal.Distance);
+			API.NetworkSetTalkerProximity(this.config.Voice.VoiceStyles[0].Distance);
 
 			// Create overlay
 			this.overlay = new VoiceOverlay(this.OverlayManager);
@@ -52,7 +52,7 @@ namespace VoicePlugin.Client
 			}
 
 			this.overlay.Show();
-			this.overlay.Talk(CorrectFormat(this.config.Text.DefaultColor));
+			this.overlay.UpdateVoiceOverlay(CorrectFormat(this.config.Text.DefaultColor));
 
 		}
 
@@ -65,7 +65,7 @@ namespace VoicePlugin.Client
 			var talkString = GetProperHtmlString(API.NetworkIsPlayerTalking(API.PlayerId()));
 			if (!string.Equals(talkString, LastString)) {
 				this.LastString = talkString;
-				this.overlay.Talk(talkString);
+				this.overlay.UpdateVoiceOverlay(talkString);
 			}
 
 		}
@@ -83,22 +83,26 @@ namespace VoicePlugin.Client
 
 		private void CycleVoiceLevel()
 		{
-			if(this.SelectedVoice == this.config.Normal.Text)
+			//TODO: Fix this
+			for (var i = 0; i < this.config.Voice.VoiceStyles.Count; i++)
 			{
-				this.SelectedVoice = this.config.Yell.Text;
-				API.NetworkSetTalkerProximity(this.config.Yell.Distance);
-			}
-
-			else if(this.SelectedVoice == this.config.Yell.Text)
-			{
-				this.SelectedVoice = this.config.Whisper.Text;
-				API.NetworkSetTalkerProximity(this.config.Whisper.Distance);
-			}
-
-			else if(this.SelectedVoice == this.config.Whisper.Text)
-			{
-				this.SelectedVoice = this.config.Normal.Text;
-				API.NetworkSetTalkerProximity(this.config.Normal.Distance);
+				var voiceStyle = this.config.Voice.VoiceStyles[i];
+				if (string.Equals(this.SelectedVoice, voiceStyle.Text))
+				{
+					//If it is last in the list return to first
+					if(this.config.Voice.VoiceStyles.Count - 1 == i)
+					{
+						this.SelectedVoice = this.config.Voice.VoiceStyles[0].Text;
+						API.NetworkSetTalkerProximity(this.config.Voice.VoiceStyles[0].Distance);
+					}
+					//Get the next.
+					else
+					{
+						this.SelectedVoice = this.config.Voice.VoiceStyles[i+1].Text;
+						API.NetworkSetTalkerProximity(this.config.Voice.VoiceStyles[i+1].Distance);
+					}
+					break;
+				}
 			}
 		}
 	}
