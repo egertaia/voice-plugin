@@ -12,10 +12,10 @@
 
 #main-container {
 	position: absolute;
-	bottom: 4.5vh;
+	bottom: 5vh;
 	left: 17.65vw;
 	text-align: left;
-	font-size: 14px;
+	font-size: 0.9rem;
 }
 
 #voice {

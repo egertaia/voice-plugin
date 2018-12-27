@@ -14,5 +14,10 @@ namespace VoicePlugin.Server
 		{
 			this.Rpc.Event(VoicePluginEvents.GetConfig).On(e => e.Reply((Configuration)this.Configuration));
 		}
+
+		public override void Reload(Configuration configuration)
+		{
+			this.Rpc.Event(VoicePluginEvents.GetConfig).Trigger(configuration);
+		}
 	}
 }

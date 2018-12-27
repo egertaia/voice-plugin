@@ -1,14 +1,50 @@
-﻿namespace VoicePlugin.Shared
+﻿using NFive.SDK.Core.Controllers;
+using JetBrains.Annotations;
+
+namespace VoicePlugin.Shared
 {
-	public class Configuration : IConfiguration
+	[PublicAPI]
+	public class Configuration : ControllerConfiguration
 	{
-		public string WhisperText { get; set; }
-		public float WhisperDistance { get; set; }
-		public string NormalText { get; set; }
-		public float NormalDistance { get; set; }
-		public string YellText { get; set; }
-		public float YellDistance { get; set; }
-		public string DefaultTextColor { get; set; }
-		public string ActivatedTextColor { get; set; }
+		public WhisperConfiguration Whisper { get; set; } = new WhisperConfiguration();
+		public NormalConfiguration Normal { get; set; } = new NormalConfiguration();
+		public YellConfiguration Yell { get; set; } = new YellConfiguration();
+		public TextConfiguration Text { get; set; } = new TextConfiguration();
+		public string ActivationEvent { get; set; } = string.Empty;
+
+	}
+
+	[PublicAPI]
+	public class TextConfiguration
+	{
+		public string DefaultColor { get; set; } = "#fff";
+		public string ActivatedColor { get; set; } = "#76AEC7";
+	}
+
+	[PublicAPI]
+	public class WhisperConfiguration : IVoiceConfiguration
+	{
+		public string Text { get; set; } = "Whisper";
+		public float Distance { get; set; } = 1.5f;
+	}
+
+	[PublicAPI]
+	public class NormalConfiguration : IVoiceConfiguration
+	{
+		public string Text { get; set; } = "Normal";
+		public float Distance { get; set; } = 10.0f;
+	}
+
+	[PublicAPI]
+	public class YellConfiguration : IVoiceConfiguration
+	{
+		public string Text { get; set; } = "Yell";
+		public float Distance { get; set; } = 25.0f;
+	}
+
+	public interface IVoiceConfiguration
+	{
+		string Text { get; set; }
+		float Distance { get; set; }
 	}
 }

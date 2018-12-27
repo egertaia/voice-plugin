@@ -1,43 +1,40 @@
-# voice-plugin
+# Voice Plugin for NFIVE
 [![License](https://img.shields.io/github/license/egertaia/voice-plugin.svg)](LICENSE)
 [![Build Status](https://img.shields.io/appveyor/ci/egertaia/voice-plugin.svg)](https://ci.appveyor.com/project/egertaia/voice-plugin)
 [![Release Version](https://img.shields.io/github/release/egertaia/voice-plugin/all.svg)](https://github.com/egertaia/voice-plugin/releases)
 
-## What is this?
-This is a plugin that works with [NFive](https://github.com/NFive/NFive) which is complete plugin framework for GTAV [FiveM](https://fivem.net/).
-The whole server is built and managed entirely in C#.
+This plugin adds customizable HUD element to display the voice levels and currently talking indicator to your [NFive](https://github.com/NFive) [FiveM](https://fivem.net/) GTAV server.
+
 This project aims to help in vizualising the voice in GTAV.
 
 Works well with my other plugin [Street positions](https://github.com/egertaia/street-position)
 
-![image](https://user-images.githubusercontent.com/9960794/50451277-bbccea80-093b-11e9-831c-bfaf937dace6.png)
+![Screenshot](https://user-images.githubusercontent.com/9960794/50451277-bbccea80-093b-11e9-831c-bfaf937dace6.png)
 
-### Usage
-1. Make sure you are using [nfpm](https://github.com/NFive/nfpm) installed.
+## Installation
+Install the plugin into your server from the [NFive Hub](https://hub.nfive.io/egertaia/voice-plugin): `nfpm install egertaia/voice-plugin`
 
-2. Make sure you have your project installed in a seperate folder using `nfpm setup`.
+## Configuration
+```yml
+# PS! Currently button(s) to switch between different styles and also different style count is not configurable. It defaults to Shift + H and 3.
 
-3. Install this plugin by calling `nfpm install egertaia/voice-plugin`
+whisper:
+  text: Whisper # Text to show
+  distance: 1.5 # Distance
+normal:
+  text: Normal
+  distance: 10
+yell:
+  text: Yell
+  distance: 25
+text:
+  default_color: '#fff' #Default text color when nothing is pressed; voice is inactive
+  activated_color: '#76AEC7' #Activated text color; when user is pressing voice button and is speaking
 
-4. Configure this if you are not happy with default configuration. This can be done by
-   * config file `path-to-server\resources\nfive\config\egertaia\voice-plugin`
-   
-   * style/html file `path-to-server\resources\nfive\plugins\egertaia\voice-plugin\Overlays`
-   
-#### Configuration
-* `whisper_text` = Text for the whisper (shortest)
+# (Optional) The RPC event which when fired should start this plugin
+# If set, this plugin won't display anything until after this event has fired once
+# This can be used to enable this plugin once you are loaded into the game
+# Defaults to disabled
+activation_event: something:game:started
 
-* `whisper_distance` = Distance that the players should hear you from.
-
-* `normal_text` = Text for the normal (average)
-
-* `normal_distance` = Distance that the players should hear you from.
-
-* `yell_text` = Text for the yell (furthest)
-
-* `yell_distance` = Distance that the players should hear you from.
-
-* `default_text_color` = Text color that should be when user is not talking (PS! Don't forget #)
-
-* `activated_text_color` = Text color that should be when user is talking (PS! Don't forget #)
-
+```

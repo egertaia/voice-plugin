@@ -17,55 +17,53 @@ namespace VoicePlugin.Client
 	[PublicAPI]
 	public class VoicePluginService : Service
 	{
+		private Configuration config;
 		private VoiceOverlay overlay;
-
-		public string WhisperText;
-		public float WhisperDistance;
-		public string NormalText;
-		public float NormalDistance;
-		public string YellText;
-		public float YellDistance;
-
-		public string DefaultColor;
-		public string ActivatedColor;
-
 		private string SelectedVoice;
 		private string LastString;
 
-		public VoicePluginService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, overlay, user)
-		{
-			this.overlay = new VoiceOverlay(this.OverlayManager);
-		}
+		public VoicePluginService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, overlay, user) { }
 
 		public override async Task Started()
 		{
-			var config = await this.Rpc.Event(VoicePluginEvents.GetConfig).Request<Configuration>();
-			this.WhisperText = config.WhisperText;
-			this.WhisperDistance = config.WhisperDistance;
-			this.NormalText = config.NormalText;
-			this.NormalDistance = config.NormalDistance;
-			this.YellText = config.YellText;
-			this.YellDistance = config.YellDistance;
+			// Request server config
+			this.config = await this.Rpc.Event(VoicePluginEvents.GetConfig).Request<Configuration>();
 
-			this.DefaultColor = config.DefaultTextColor;
-			this.ActivatedColor = config.ActivatedTextColor;
+			// Update local config on server config change
+			this.Rpc.Event(VoicePluginEvents.GetConfig).On<Configuration>((e, c) => this.config = c);
 
-			this.SelectedVoice = this.NormalText;
-			API.NetworkSetTalkerProximity(this.NormalDistance);
+			//set default talker proximity and text
+			this.SelectedVoice = this.config.Normal.Text;
+			this.LastString = GetProperHtmlString(false);
+			API.NetworkSetTalkerProximity(this.config.Normal.Distance);
 
-            this.LastString = GetProperHtmlString(false);
-			this.overlay.Talk(CorrectFormat("#fff"));
+			// Create overlay
+			this.overlay = new VoiceOverlay(this.OverlayManager);
+
+			if (!string.IsNullOrWhiteSpace(this.config.ActivationEvent))
+			{
+				// Attach tick handler once activation event has fired
+				this.Rpc.Event(this.config.ActivationEvent.Trim()).On(e => this.Ticks.Attach(OnTick));
+			}
+			else
+			{
+				// Attach tick handler immediately
+				this.Ticks.Attach(OnTick);
+			}
 
 			this.overlay.Show();
-			this.Ticks.Attach(OnTick);
+			this.overlay.Talk(CorrectFormat(this.config.Text.DefaultColor));
+
 		}
 
 		private async Task OnTick()
 		{
+			if (Game.Player == null) return;
+			
 			if (Input.IsControlJustPressed(Control.VehicleHeadlight, true, InputModifier.Shift)) CycleVoiceLevel();
 
 			var talkString = GetProperHtmlString(API.NetworkIsPlayerTalking(API.PlayerId()));
-			if (LastString != talkString) {
+			if (!string.Equals(talkString, LastString)) {
 				this.LastString = talkString;
 				this.overlay.Talk(talkString);
 			}
@@ -74,8 +72,8 @@ namespace VoicePlugin.Client
 
 		private string GetProperHtmlString(bool isTalking)
 		{
-			if (isTalking) return CorrectFormat(this.ActivatedColor);
-			return CorrectFormat(this.DefaultColor);
+			if (isTalking) return CorrectFormat(this.config.Text.ActivatedColor);
+			return CorrectFormat(this.config.Text.DefaultColor);
 		}
 
 		private string CorrectFormat(string color)
@@ -85,22 +83,22 @@ namespace VoicePlugin.Client
 
 		private void CycleVoiceLevel()
 		{
-			if(this.SelectedVoice == this.NormalText)
+			if(this.SelectedVoice == this.config.Normal.Text)
 			{
-				this.SelectedVoice = this.YellText;
-				API.NetworkSetTalkerProximity(this.YellDistance);
+				this.SelectedVoice = this.config.Yell.Text;
+				API.NetworkSetTalkerProximity(this.config.Yell.Distance);
 			}
 
-			else if(this.SelectedVoice == this.YellText)
+			else if(this.SelectedVoice == this.config.Yell.Text)
 			{
-				this.SelectedVoice = this.WhisperText;
-				API.NetworkSetTalkerProximity(this.WhisperDistance);
+				this.SelectedVoice = this.config.Whisper.Text;
+				API.NetworkSetTalkerProximity(this.config.Whisper.Distance);
 			}
 
-			else if(this.SelectedVoice == this.WhisperText)
+			else if(this.SelectedVoice == this.config.Whisper.Text)
 			{
-				this.SelectedVoice = this.NormalText;
-				API.NetworkSetTalkerProximity(this.NormalDistance);
+				this.SelectedVoice = this.config.Normal.Text;
+				API.NetworkSetTalkerProximity(this.config.Normal.Distance);
 			}
 		}
 	}

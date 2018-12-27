@@ -2,6 +2,6 @@
 {
 	public static class VoicePluginEvents
 	{
-		public static readonly string GetConfig = "voiceplugin:configure";
+		public static readonly string GetConfig = "egertaia:voice-plugin:configure";
 	}
 }
