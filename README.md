@@ -15,8 +15,9 @@ Works well with my other plugin [Street positions](https://github.com/egertaia/s
 Install the plugin into your server from the [NFive Hub](https://hub.nfive.io/egertaia/voice-plugin): `nfpm install egertaia/voice-plugin`
 
 ## Configuration
+* For Cycle configuration please refer to [Controls](https://docs.fivem.net/game-references/controls/) and [InputModifiers](https://github.com/NFive/SDK.Client/blob/master/Input/InputModifier.cs) to find the perfect combination for you.
 ```yml
-# PS! Currently button(s) to switch between different styles and also different style count is not configurable. It defaults to Shift + H and 3.
+# PS! Currently different voice style count is not configurable. It defaults to 3 - whisper, normal and yell.
 
 whisper:
   text: Whisper # Text to show
@@ -28,8 +29,11 @@ yell:
   text: Yell
   distance: 25
 text:
-  default_color: '#fff' #Default text color when nothing is pressed; voice is inactive
-  activated_color: '#76AEC7' #Activated text color; when user is pressing voice button and is speaking
+  default_color: '#fff' # Default text color when nothing is pressed; voice is inactive
+  activated_color: '#76AEC7' # Activated text color; when user is pressing voice button and is speaking
+cycle:
+  key: 74 # Default is set to H
+  input_modifier: 4 # Default is set to Shift
 
 # (Optional) The RPC event which when fired should start this plugin
 # If set, this plugin won't display anything until after this event has fired once

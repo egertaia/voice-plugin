@@ -60,7 +60,7 @@ namespace VoicePlugin.Client
 		{
 			if (Game.Player == null) return;
 			
-			if (Input.IsControlJustPressed(Control.VehicleHeadlight, true, InputModifier.Shift)) CycleVoiceLevel();
+			if (Input.IsControlJustPressed((Control)this.config.Cycle.Key, true, (InputModifier)this.config.Cycle.InputModifier)) CycleVoiceLevel();
 
 			var talkString = GetProperHtmlString(API.NetworkIsPlayerTalking(API.PlayerId()));
 			if (!string.Equals(talkString, LastString)) {

@@ -10,8 +10,16 @@ namespace VoicePlugin.Shared
 		public NormalConfiguration Normal { get; set; } = new NormalConfiguration();
 		public YellConfiguration Yell { get; set; } = new YellConfiguration();
 		public TextConfiguration Text { get; set; } = new TextConfiguration();
+		public KeyConfiguration Cycle { get; set; } = new KeyConfiguration();
 		public string ActivationEvent { get; set; } = string.Empty;
 
+	}
+
+	[PublicAPI]
+	public class KeyConfiguration
+	{
+		public int Key { get; set; } = 74;
+		public int InputModifier { get; set; } = 4;
 	}
 
 	[PublicAPI]
