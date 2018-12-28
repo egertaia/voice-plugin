@@ -10,20 +10,18 @@
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-#main-container {
+main {
 	position: absolute;
 	bottom: 5vh;
 	left: 17.65vw;
 	text-align: left;
 	font-size: 0.9rem;
-}
-
-#voice {
 	color: #E6D081;
 }
 
 #level {
-	color: #fff;
+	color: #FFFFFF;
 }
-
-
+#level.talking {
+	color: #76AEC7;
+}
