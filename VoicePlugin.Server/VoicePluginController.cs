@@ -7,14 +7,17 @@ using VoicePlugin.Shared;
 
 namespace VoicePlugin.Server
 {
+	/// <inheritdoc />
 	[PublicAPI]
 	public class VoicePluginController : ConfigurableController<Configuration>
 	{
+		/// <inheritdoc />
 		public VoicePluginController(ILogger logger, IEventManager events, IRpcHandler rpc, Configuration configuration) : base(logger, events, rpc, configuration)
 		{
-			this.Rpc.Event(VoicePluginEvents.GetConfig).On(e => e.Reply((Configuration)this.Configuration));
+			this.Rpc.Event(VoicePluginEvents.GetConfig).On(e => e.Reply(this.Configuration));
 		}
 
+		/// <inheritdoc />
 		public override void Reload(Configuration configuration)
 		{
 			this.Rpc.Event(VoicePluginEvents.GetConfig).Trigger(configuration);
