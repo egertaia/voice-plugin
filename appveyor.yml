@@ -54,6 +54,8 @@ assembly_info:
 
 before_build:
 - cmd: nuget restore
+- ps: Start-FileDownload https://ci.appveyor.com/api/projects/NFive/nfpm/artifacts/bin/Release/nfpm.exe
+- cmd: nfpm install
 
 build:
   verbosity: minimal

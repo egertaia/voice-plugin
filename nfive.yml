@@ -1,18 +1,18 @@
-name: egertaia/voice-plugin
-version: 2.0.0
-description: This is a simple plugin that will help you in your roleplay adventures
+name: egertaia/voice-proximity
+version: 1.0.0
+description: Customizable HUD element to display the voice levels and currently talking indicator
 author: egertaia
 license: LGPL
 server:
   main:
-    - VoiceProximity.Server
+    - Egertaia.VoiceProximity.Server
   include:
-    - VoiceProximity.Shared
+    - Egertaia.VoiceProximity.Shared
 client:
   main:
-    - VoiceProximity.Client
+    - Egertaia.VoiceProximity.Client
   files:
     - Overlays/VoiceOverlay.html
     - Overlays/style.css
   include:
-    - VoiceProximity.Shared
+    - Egertaia.VoiceProximity.Shared

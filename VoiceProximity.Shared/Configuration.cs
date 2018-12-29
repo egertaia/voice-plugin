@@ -1,8 +1,8 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using NFive.SDK.Core.Controllers;
-using System.Collections.Generic;
 
-namespace VoiceProximity.Shared
+namespace Egertaia.VoiceProximity.Shared
 {
 	/// <inheritdoc />
 	[PublicAPI]

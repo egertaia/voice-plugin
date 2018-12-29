@@ -1,16 +1,19 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
+using NFive.SDK.Client;
 
-[assembly: AssemblyTitle("egertaia voice-plugin")]
-[assembly: AssemblyDescription("This is a simple plugin that will help you in your roleplay adventures")]
+[assembly: ClientPlugin(SDK.Version)]
+
+[assembly: AssemblyTitle("Voice Proximity")]
+[assembly: AssemblyDescription("Customizable HUD element to display the voice levels and currently talking indicator")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("egertaia")]
-[assembly: AssemblyProduct("egertaia voice-plugin Shared Library")]
+[assembly: AssemblyProduct("Voice Proximity Client Plugin")]
 [assembly: AssemblyCopyright("Copyright © egertaia 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("0212cfbd-4beb-4c4d-8a32-b6cddd2b0dd6")]
+[assembly: Guid("f2f1d894-00b0-44ae-afa8-71a74a3c6b2f")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyInformationalVersion("1.0.0.0")]

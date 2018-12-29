@@ -1,6 +1,6 @@
 ﻿using NFive.SDK.Client.Interface;
 
-namespace VoiceProximity.Client.Overlays
+namespace Egertaia.VoiceProximity.Client.Overlays
 {
 	public class VoiceOverlay : Overlay
 	{
