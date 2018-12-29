@@ -1,6 +1,7 @@
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using JetBrains.Annotations;
+using NFive.SDK.Client.Commands;
 using NFive.SDK.Client.Events;
 using NFive.SDK.Client.Input;
 using NFive.SDK.Client.Interface;
@@ -10,14 +11,14 @@ using NFive.SDK.Core.Diagnostics;
 using NFive.SDK.Core.Models.Player;
 using System;
 using System.Threading.Tasks;
-using VoicePlugin.Client.Overlays;
-using VoicePlugin.Shared;
+using VoiceProximity.Client.Overlays;
+using VoiceProximity.Shared;
 
-namespace VoicePlugin.Client
+namespace VoiceProximity.Client
 {
 	/// <inheritdoc />
 	[PublicAPI]
-	public class VoicePluginService : Service
+	public class VoiceProximityService : Service
 	{
 		private Configuration config;
 		private VoiceOverlay overlay;
@@ -25,7 +26,7 @@ namespace VoicePlugin.Client
 		private bool last;
 
 		/// <inheritdoc />
-		public VoicePluginService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, overlay, user) { }
+		public VoiceProximityService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, ICommandManager commands, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, commands, overlay, user) { }
 
 		/// <inheritdoc />
 		public override async Task Started()

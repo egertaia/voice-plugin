@@ -1,4 +1,4 @@
-﻿namespace VoicePlugin.Shared
+﻿namespace VoiceProximity.Shared
 {
 	public static class VoicePluginEvents
 	{

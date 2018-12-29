@@ -2,7 +2,7 @@
 using NFive.SDK.Core.Controllers;
 using System.Collections.Generic;
 
-namespace VoicePlugin.Shared
+namespace VoiceProximity.Shared
 {
 	/// <inheritdoc />
 	[PublicAPI]

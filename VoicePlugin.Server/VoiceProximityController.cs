@@ -2,17 +2,18 @@ using JetBrains.Annotations;
 using NFive.SDK.Core.Diagnostics;
 using NFive.SDK.Server.Controllers;
 using NFive.SDK.Server.Events;
+using NFive.SDK.Server.Rcon;
 using NFive.SDK.Server.Rpc;
-using VoicePlugin.Shared;
+using VoiceProximity.Shared;
 
-namespace VoicePlugin.Server
+namespace VoiceProximity.Server
 {
 	/// <inheritdoc />
 	[PublicAPI]
-	public class VoicePluginController : ConfigurableController<Configuration>
+	public class VoiceProximityController : ConfigurableController<Configuration>
 	{
 		/// <inheritdoc />
-		public VoicePluginController(ILogger logger, IEventManager events, IRpcHandler rpc, Configuration configuration) : base(logger, events, rpc, configuration)
+		public VoiceProximityController(ILogger logger, IEventManager events, IRpcHandler rpc, IRconManager rcon, Configuration configuration) : base(logger, events, rpc, rcon, configuration)
 		{
 			this.Rpc.Event(VoicePluginEvents.GetConfig).On(e => e.Reply(this.Configuration));
 		}

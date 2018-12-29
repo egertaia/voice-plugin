@@ -5,14 +5,14 @@ author: egertaia
 license: LGPL
 server:
   main:
-    - VoicePlugin.Server
+    - VoiceProximity.Server
   include:
-    - VoicePlugin.Shared
+    - VoiceProximity.Shared
 client:
   main:
-    - VoicePlugin.Client
+    - VoiceProximity.Client
   files:
     - Overlays/VoiceOverlay.html
     - Overlays/style.css
   include:
-    - VoicePlugin.Shared
+    - VoiceProximity.Shared

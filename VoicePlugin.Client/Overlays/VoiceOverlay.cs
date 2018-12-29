@@ -1,6 +1,6 @@
 ﻿using NFive.SDK.Client.Interface;
 
-namespace VoicePlugin.Client.Overlays
+namespace VoiceProximity.Client.Overlays
 {
 	public class VoiceOverlay : Overlay
 	{

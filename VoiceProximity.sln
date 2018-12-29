@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nfive.yml = nfive.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceProximity.Client", "VoicePlugin.Client\VoiceProximity.Client.csproj", "{374CC022-FB28-446E-B9E7-4E28D6EF936D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoicePlugin.Client", "VoicePlugin.Client\VoicePlugin.Client.csproj", "{374CC022-FB28-446E-B9E7-4E28D6EF936D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceProximity.Server", "VoicePlugin.Server\VoiceProximity.Server.csproj", "{0E9F8CF0-2195-4B4C-B62B-8BA47C9DB44C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoicePlugin.Server", "VoicePlugin.Server\VoicePlugin.Server.csproj", "{0E9F8CF0-2195-4B4C-B62B-8BA47C9DB44C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceProximity.Shared", "VoicePlugin.Shared\VoiceProximity.Shared.csproj", "{0212CFBD-4BEB-4C4D-8A32-B6CDDD2B0DD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoicePlugin.Shared", "VoicePlugin.Shared\VoicePlugin.Shared.csproj", "{0212CFBD-4BEB-4C4D-8A32-B6CDDD2B0DD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
