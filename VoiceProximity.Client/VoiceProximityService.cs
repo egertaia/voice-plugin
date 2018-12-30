@@ -1,5 +1,7 @@
+using System;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using Egertaia.VoiceProximity.Shared;
 using JetBrains.Annotations;
 using NFive.SDK.Client.Commands;
 using NFive.SDK.Client.Events;
@@ -9,12 +11,10 @@ using NFive.SDK.Client.Rpc;
 using NFive.SDK.Client.Services;
 using NFive.SDK.Core.Diagnostics;
 using NFive.SDK.Core.Models.Player;
-using System;
 using System.Threading.Tasks;
-using VoiceProximity.Client.Overlays;
-using VoiceProximity.Shared;
+using Egertaia.VoiceProximity.Client.Overlays;
 
-namespace VoiceProximity.Client
+namespace Egertaia.VoiceProximity.Client
 {
 	/// <inheritdoc />
 	[PublicAPI]
@@ -32,10 +32,10 @@ namespace VoiceProximity.Client
 		public override async Task Started()
 		{
 			// Request server config
-			this.config = await this.Rpc.Event(VoicePluginEvents.GetConfig).Request<Configuration>();
+			this.config = await this.Rpc.Event(VoiceProximityEvents.GetConfig).Request<Configuration>();
 
 			// Update local config on server config change
-			this.Rpc.Event(VoicePluginEvents.GetConfig).On<Configuration>((e, c) => this.config = c);
+			this.Rpc.Event(VoiceProximityEvents.GetConfig).On<Configuration>((e, c) => this.config = c);
 
 			// Set default talker proximity
 			API.NetworkSetTalkerProximity(this.config.Levels[this.level].Distance);
@@ -54,11 +54,11 @@ namespace VoiceProximity.Client
 				// Show overlay immediately
 				this.overlay.Show();
 			}
-			
-			this.Ticks.Attach(OnTick);
+
+			this.Ticks.Attach(new Action(OnTick));
 		}
 
-		private async Task OnTick()
+		private void OnTick()
 		{
 			if (Input.IsControlJustPressed((Control)this.config.Hotkey.Key, true, (InputModifier)this.config.Hotkey.Modifier))
 			{
